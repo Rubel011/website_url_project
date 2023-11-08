@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "name": "website_url_project",
+    "builds": [
+        {
+            "src": "./index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
+}
