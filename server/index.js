@@ -5,6 +5,8 @@ const { successResponse, errorResponse } = require('./helpers/successAndError');
 const { connection } = require('./config/db');
 const userRouter = require('./routes/userRouter');
 const urlRouter = require('./routes/urlDetailRouter');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swaggerConfig');
 const PORT = process.env.PORT || 8080
 
 // Middleware to parse JSON request bodies
@@ -12,6 +14,10 @@ app.use(express.json());
 
 // Middleware for cors error
 app.use(cors());
+
+// Serve Swagger documentation
+const CSS_URL ="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL }));
 
 // Home route
 app.get("/", async (req, res) => {
