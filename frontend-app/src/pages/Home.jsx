@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function Home() {
-  const url = "https://famous-lamb-getup.cyclic.app";
+  const url = "https://website-url-project-backend.vercel.app";
   const [data, setData] = useState(false);
   const [websiteUrl, setWebsiteUrl] = useState(null);
   const [dataPost, setDataPost] = useState(false);
@@ -19,13 +19,13 @@ function Home() {
       });
 
       if (userResponse.ok) {
-        await userResponse.json();
-        // setData(finalData.message);
+        let finalData= await userResponse.json();
+        setData(finalData.message);
       } else {
         console.log("login firtst");
       }
     }
-  fetchData()
+    accessToken?fetchData():null
   }, [dataPost]);
 
   const addData = async (e) => {

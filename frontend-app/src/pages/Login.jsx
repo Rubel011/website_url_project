@@ -9,7 +9,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const url = "https://famous-lamb-getup.cyclic.app";
+  const url = "https://website-url-project-backend.vercel.app";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
