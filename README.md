@@ -1,12 +1,12 @@
-# Library-management-system
+# Website-Url-Project
 
-This is the library-management-system, where you can register, log in, and access restricted resources.
+This is the Website-Url-Project, where you can register, log in, and access restricted resources.
 
 ## API Documentation: for Swagger
 
 You can explore the API documentation using Swagger UI. Access the documentation by navigating to:
 
-   http://3.84.245.69:8080/api-docs
+   https://website-url-project-backend.vercel.app/api-docs
 
 ## Functionality
 
@@ -14,14 +14,14 @@ The API includes the following functionality:
 - User Registration
 - User Login and Authentication
 - User details 
-- book Management- create , update, delete
+- Url Management- create , update, delete
 
 
 ## Backend Deployment
 
 The backend of this project is deployed on AWS and can be accessed via the following link: 
 
-[Backend Deployment Link](http://3.84.245.69:8080/)
+[Backend Deployment Link](https://website-url-project-backend.vercel.app/)
 
 
 ## Backend-Routes
@@ -29,17 +29,12 @@ The backend of this project is deployed on AWS and can be accessed via the follo
   - `POST /users/register`: Register a new user.
   - `POST /users/login`: Log in with a registered user.
   - `GET /users/`: Get all user details (jwt protected) .
-- **Book Management**:
-  - `GET /books/`: List of all available books.
-  - `GET /books/search?{title=?,available=?}`: Update book details.
-  - `POST /books/`: Add a new book.
-  - `PUT /books/`: Update book details.
-  - `DELETE /books/`: Delete a book form database.
-- **Borrowing Book**:
-  - `POST /borrow/{:bookid}`: Borrow a new book (jwt prltected).
-  - `POST /borrow/return/{:bookid}`: Return a borrowed book.
+- **Url Management**:
+  - `GET /Domain/`: List of all available url data (jwt protected) .
+  - `POST /Domain/`: Add a new book (jwt protected) in the body add url field .
+  - `PUT /Domain/:id`: Update book details (jwt protected) in the body add favorite field.
+  - `DELETE /Domain/:id`: Delete a book form database (jwt protected) .
 ### Technologies Used
-
 - Node.js 
 - Express.js
 - MongoDB
@@ -53,11 +48,13 @@ The backend of this project is deployed on AWS and can be accessed via the follo
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/Rubel011/library-management-system.git
+   git clone https://github.com/Rubel011/website_url_project.git
 
 2. Navigate to the project directory:
     ```bash
-    cd library-management-system
+    cd website_url_project
+    for frontent: cd frontent-app
+    fort backend: cd server
 3. Install the project dependencies:
     ```bash
     npm install 

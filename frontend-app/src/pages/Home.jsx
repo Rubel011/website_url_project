@@ -19,12 +19,13 @@ function Home() {
       });
 
       if (userResponse.ok) {
-        let finalData = await userResponse.json();
-        setData(finalData.message);
+        await userResponse.json();
+        // setData(finalData.message);
       } else {
+        console.log("login firtst");
       }
     }
-    fetchData();
+    accessToken?fetchData():null
   }, [dataPost]);
 
   const addData = async (e) => {
