@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Error from "../components/error"
 
 export const AllRoutes = () => {
+  
   return (
     <>
       <Routes>
