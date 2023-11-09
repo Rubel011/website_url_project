@@ -53,7 +53,7 @@ function Home() {
         alert(error.message);
       }
     }
-    fetchData();
+    accessToken?fetchData():alert("Please login first");
   };
 
   const deleteBtn = async (id) => {
@@ -166,7 +166,6 @@ function Home() {
               ) : (
                 <tr className="mt-4 text-red-500">
                   <td>You do not have any Url data</td>
-                  You do not have any Url data
                 </tr>
               )}
             </tbody>
