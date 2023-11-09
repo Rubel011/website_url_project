@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function Home() {
-  const url = "https://website-url-project-backend.vercel.app";
+  const url = "https://famous-lamb-getup.cyclic.app";
   const [data, setData] = useState(false);
   const [websiteUrl, setWebsiteUrl] = useState(null);
   const [dataPost, setDataPost] = useState(false);
@@ -25,7 +25,7 @@ function Home() {
         console.log("login firtst");
       }
     }
-    accessToken?fetchData():null
+  fetchData()
   }, [dataPost]);
 
   const addData = async (e) => {
