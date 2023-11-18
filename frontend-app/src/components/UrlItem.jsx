@@ -20,7 +20,17 @@ const UrlItem = ({ item, onDelete, onFavoriteToggle }) => {
           >
             {item.webLinks.length} Links <br />
             Click to see
-            {toggleLinkWeb ? <LinkList links={item.webLinks} /> : null}
+            {toggleLinkWeb ? (
+              <LinkList
+                links={item.webLinks}
+                states={{
+                  toggleLinkWeb,
+                  setToggleLinkWeb,
+                  toggleLink,
+                  setToggleLink,
+                }}
+              />
+            ) : null}
           </li>
         )}
       </td>

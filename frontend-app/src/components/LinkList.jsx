@@ -1,17 +1,16 @@
-// LinkList.js
 
 import React from "react";
-import { useMyContext } from "../contexts/MyContext";
 
 const LinkList = ({ links ,states}) => {
-  const { toggleLinkWeb, setToggleLinkWeb, toggleLink, setToggleLink } =states;
+  const { toggleLinkWeb, setToggleLinkWeb, toggleLink, setToggleLink } =states
+  
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-gray-800 text-white p-6 rounded shadow-lg">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 overflow-auto">
+      <div className="bg-gray-800 text-white p-6 rounded shadow-lg max-w-full overflow-auto">
         <ul>
           {links.map((link, index) =>
             index < 5 ? (
-              <li key={index} className="mb-2">
+              <li key={index} className="mb-2 mr-1">
                 {link}
               </li>
             ) : null
