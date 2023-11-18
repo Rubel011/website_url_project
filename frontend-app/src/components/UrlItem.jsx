@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import LinkList from "./linkList";
 
-
 const UrlItem = ({ item, onDelete, onFavoriteToggle }) => {
   const [toggleLinkWeb, setToggleLinkWeb] = useState(false);
   const [toggleLink, setToggleLink] = useState(false);
