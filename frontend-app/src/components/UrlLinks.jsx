@@ -1,9 +1,8 @@
-
 import React from "react";
 
-const LinkList = ({ links ,states}) => {
-  const { toggleLinkWeb, setToggleLinkWeb, toggleLink, setToggleLink } =states
-  
+export const UrlLinks = ({ links, states }) => {
+  const { toggleLinkWeb, setToggleLinkWeb, toggleLink, setToggleLink } = states;
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 overflow-auto">
       <div className="bg-gray-800 text-white p-6 rounded shadow-lg max-w-full overflow-auto">
@@ -18,7 +17,10 @@ const LinkList = ({ links ,states}) => {
         </ul>
       </div>
       <button
-        onClick={(e)=>{setToggleLinkWeb(toggleLinkWeb?false:toggleLinkWeb) ;setToggleLink(setToggleLink?false:toggleLink)}}
+        onClick={(e) => {
+          setToggleLinkWeb(toggleLinkWeb ? false : toggleLinkWeb);
+          setToggleLink(setToggleLink ? false : toggleLink);
+        }}
         className="mt-4 p-2 bg-red-500 text-white rounded hover:bg-red-600"
       >
         Close
@@ -26,5 +28,3 @@ const LinkList = ({ links ,states}) => {
     </div>
   );
 };
-
-export default LinkList;

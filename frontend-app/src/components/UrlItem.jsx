@@ -1,6 +1,7 @@
 // UrlItem.js
 import React, { useState } from "react";
-import LinkList from "./linkList";
+import { UrlLinks } from "./UrlLinks";
+
 
 const UrlItem = ({ item, onDelete, onFavoriteToggle }) => {
   const [toggleLinkWeb, setToggleLinkWeb] = useState(false);
@@ -21,7 +22,7 @@ const UrlItem = ({ item, onDelete, onFavoriteToggle }) => {
             {item.webLinks.length} Links <br />
             Click to see
             {toggleLinkWeb ? (
-              <LinkList
+              <UrlLinks
                 links={item.webLinks}
                 states={{
                   toggleLinkWeb,
@@ -45,7 +46,7 @@ const UrlItem = ({ item, onDelete, onFavoriteToggle }) => {
             {item.mediaLinks.length} Links <br />
             Click to see
             {toggleLink ? (
-              <LinkList
+              <UrlLinks
                 links={item.mediaLinks}
                 states={{
                   toggleLinkWeb,
