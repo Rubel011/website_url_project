@@ -3,14 +3,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../components/loading";
+import { useMyContext } from "../contexts/MyContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const {loginLogout,setLoginLogout}=useMyContext()
   const navigate = useNavigate();
   const url = "https://website-url-project-backend.vercel.app";
-
+// console.log(loginLogout);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -32,6 +34,7 @@ function Login() {
         if (userResponse.ok) {
           const userData = await userResponse.json();
           localStorage.setItem("access_token", userData.accessToken);
+          
           // Show SweetAlert popup
           const timerMixin = Swal.mixin({
             toast: true,
@@ -46,6 +49,7 @@ function Login() {
               text: "Welcome to the application.",
             })
             .then(() => {
+              setLoginLogout(userData.accessToken);
               // Redirect to the home page after the popup is closed
               navigate("/");
             });

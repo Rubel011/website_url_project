@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-
+import { useMyContext } from "../contexts/MyContext";
+import UrlItem from "../components/UrlItem";
 function Home() {
   const url = "https://website-url-project-backend.vercel.app";
   const [data, setData] = useState(false);
   const [websiteUrl, setWebsiteUrl] = useState(null);
   const [dataPost, setDataPost] = useState(false);
-  const [accessToken, setAccessToken] = useState(
-    localStorage.getItem("access_token")
-  );
+  const { loginLogout } = useMyContext();
+
   useEffect(() => {
     async function fetchData() {
       let userResponse = await fetch(`${url}/domain`, {
@@ -19,13 +19,14 @@ function Home() {
       });
 
       if (userResponse.ok) {
-        let finalData= await userResponse.json();
-        setData(finalData.message);
+        let finalData = await userResponse.json();
+        setData(finalData.data);
       } else {
         console.log("login firtst");
+        setData(false);
       }
     }
-    accessToken?fetchData():null
+    loginLogout ? fetchData() : null;
   }, [dataPost]);
 
   const addData = async (e) => {
@@ -53,7 +54,7 @@ function Home() {
         alert(error.message);
       }
     }
-    accessToken?fetchData():alert("Please login first");
+    loginLogout ? fetchData() : alert("Please login first");
   };
 
   const deleteBtn = async (id) => {
@@ -68,15 +69,16 @@ function Home() {
 
       if (userResponse.ok) {
         let finalData = await userResponse.json();
-        setDataPost(!dataPost);
       } else {
         console.log(userResponse);
         alert("there is some error with the request ");
       }
+      setDataPost(!dataPost);
     } catch (error) {
       alert(error.message);
     }
   };
+
   const favoriteBtn = async (id, favorite) => {
     try {
       let userResponse = await fetch(`${url}/domain/${id}`, {
@@ -99,6 +101,7 @@ function Home() {
       alert(error.message);
     }
   };
+
   return (
     <div className="p-6">
       <form action="" className="" onSubmit={addData}>
@@ -120,7 +123,7 @@ function Home() {
       <div className="">
         <h1 className="text-xl font-bold">Here you can see your URL details</h1>
 
-        {accessToken ? (
+        {loginLogout ? (
           <table className="mt-4 w-full border-collapse border">
             <thead>
               <tr className="bg-gray-200">
@@ -136,32 +139,12 @@ function Home() {
             <tbody>
               {data ? (
                 data.map((item, i) => (
-                  <tr key={item._id}>
-                    <td className="border p-2">{item.domainName}</td>
-                    <td className="border p-2">{item.wordCount}</td>
-                    <td className="border p-2">{item.webLinks}</td>
-                    <td className="border p-2">{item.mediaLinks}</td>
-                    <td className="border p-2">{item.favorite.toString()}</td>
-                    <td
-                      className=" border p-2 hover:bg-red-200"
-                      onClick={(e) => {
-                        deleteBtn(item._id);
-                      }}
-                    >
-                      DeleteBtn
-                    </td>
-                    <td
-                      className="border p-2 hover:bg-green-200"
-                      value={item._id}
-                      onClick={(e) => {
-                        favoriteBtn(item._id, !item.favorite);
-                      }}
-                    >
-                      {item.favorite
-                        ? "Delete from favorite"
-                        : "Add to favorite"}
-                    </td>
-                  </tr>
+                  <UrlItem
+                    key={item._id}
+                    item={item}
+                    onDelete={deleteBtn}
+                    onFavoriteToggle={favoriteBtn}
+                  />
                 ))
               ) : (
                 <tr className="mt-4 text-red-500">

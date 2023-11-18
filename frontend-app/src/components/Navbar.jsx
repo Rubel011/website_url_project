@@ -1,46 +1,33 @@
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
-import "./Navbar.css"
+import "./Navbar.css";
+import { useMyContext } from "../contexts/MyContext";
 
 export const navLinks = [
   {
     id: "/",
     title: "HOME",
   },
-  // {
-  //   id: "/categories",
-  //   title: "CATEGORIES",
-  // },
-  // {
-  //   id: "/product",
-  //   title: "PRODUCT",
-  // },
 ];
 
 const Navbar = () => {
   const location = useLocation();
   const [toggle, setToggle] = useState(false);
-  const [accessToken, setAccessToken] = useState(
-    localStorage.getItem("access_token")
-  );
+  const { loginLogout, setLoginLogout } = useMyContext();
   const changeToggle = () => {
     setToggle(!toggle);
   };
   const logout = () => {
     localStorage.removeItem("access_token");
-    setAccessToken(null);
+    setLoginLogout(!loginLogout);
   };
 
   return (
     <nav className="w-full flex justify-between items-center px-5 bg-slate-500">
       {/* Logo */}
       <Link to="/">
-        <img
-          src="https://minimalist-e-commerce.vercel.app/static/media/newlogo2.913a6896d5b7d39d8bf6.png"
-          className=" w-20"
-          alt=""
-        />
+        <h1 className=" py-6 font-extrabold text-xl text-white">WEBSITE URL</h1>
       </Link>
 
       <ul className="flex gap-4">
@@ -50,8 +37,11 @@ const Navbar = () => {
           </Link>
         ))}
       </ul>
-      {accessToken ? (
-        <button onClick={logout} className=" bg-red-50 hover:bg-blue-700 flex text-white font-semibold py-2 px-4 rounded">
+      {loginLogout ? (
+        <button
+          onClick={logout}
+          className=" bg-red-50 hover:bg-blue-700 flex text-white font-semibold py-2 px-4 rounded"
+        >
           Logout
         </button>
       ) : (
